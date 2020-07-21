@@ -6,7 +6,7 @@ Plugin for Fastify to prevent having to write duplicate type definitions for sch
 
 **Important!**
 
-This package uses [patch-package](https://www.npmjs.com/package/patch-package) to comment existing type declarations for request methods in `node_modules/fastify/types/instance.d.ts` since TypeScript does not allow to overwrite declarations. If you notice any problems, please post a issue.
+This plugin uses [patch-package](https://www.npmjs.com/package/patch-package) to comment existing type declarations for request methods in `node_modules/fastify/types/instance.d.ts` since TypeScript does not allow to overwrite declarations. If you notice any problems, please post a issue.
 
 ## Install
 
