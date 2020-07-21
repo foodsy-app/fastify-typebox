@@ -5,7 +5,8 @@
   "keywords": [
     "fastify",
     "typebox",
-    "json-schema"
+    "json-schema",
+    "fastify-plugin"
   ],
   "homepage": "https://github.com/foodsy-app/fastify-typebox#readme",
   "bugs": {
