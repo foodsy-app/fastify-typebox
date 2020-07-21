@@ -33,6 +33,8 @@ This plugin exposes a new method on the `FastifyInstance` called `typeboxSchema`
 **Notice**: Please refer to the [typebox repository](https://github.com/sinclairzx81/typebox) for a overview of the typebox API.
 
 ```typescript
+import { Type } from "@sinclair/typebox";
+
 // Available request methods are
 // .get, .head, .post, .put, .delete, .options, .patch and .all
 server.get(
