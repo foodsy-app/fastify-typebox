@@ -1,0 +1,27 @@
+diff --git a/node_modules/fastify/types/instance.d.ts b/node_modules/fastify/types/instance.d.ts
+index 06380bd..558338d 100644
+--- a/node_modules/fastify/types/instance.d.ts
++++ b/node_modules/fastify/types/instance.d.ts
+@@ -66,14 +66,14 @@ export interface FastifyInstance<
+     ContextConfig = ContextConfigDefault
+   >(opts: RouteOptions<RawServer, RawRequest, RawReply, RouteGeneric, ContextConfig>): FastifyInstance<RawServer, RawRequest, RawReply, Logger>;
+ 
+-  get: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  head: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  post: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  put: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  delete: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  options: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  patch: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  all: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // get: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // head: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // post: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // put: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // delete: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // options: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // patch: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // all: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+ 
+   // addHook: overloads
+ 
