@@ -9,4 +9,4 @@ var plugin = function (fastify, _options, done) {
     fastify.decorate("typeboxSchema", createTypeboxSchema);
     done();
 };
-exports.default = fastify_plugin_1.default(plugin, { fastify: ">=3.x", name: "@foodsy/fastify-typebox" });
+exports.default = fastify_plugin_1.default(plugin, { fastify: ">=3.x", name: "@foodsy-app/fastify-typebox" });
