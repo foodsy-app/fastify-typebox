@@ -4,7 +4,7 @@ Plugin for Fastify to prevent having to write duplicate type definitions for sch
 
 `@foodsy-app/fastify-typebox` uses [typebox](https://github.com/sinclairzx81/typebox), to compose JSON schemas.
 
-**Important note before using this plugin!**
+## Important note before using this plugin!
 
 This plugin requires [patch-package](https://www.npmjs.com/package/patch-package) to comment existing type declarations for request methods in `node_modules/fastify/types/instance.d.ts` since TypeScript does not allow to overwrite declarations.
 
@@ -48,6 +48,16 @@ npx patch-package --patch-dir .
 ```
 
 Run the same command using the `--reverse` flag if you notice any problems.
+
+## Tip
+
+Add the patch file to your source control and add the script below to the scripts section in your `package.json` so that people who install your project do not have to manually apply the patch:
+
+```json
+"scripts": {
+  "postinstall": "npx patch-package --patch-dir ."
+}
+```
 
 ## Install
 

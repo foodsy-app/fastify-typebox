@@ -1,6 +1,6 @@
 {
   "name": "@foodsy-app/fastify-typebox",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Plugin for Fastify to prevent having to write duplicate type definitions for schemas",
   "keywords": [
     "fastify",
