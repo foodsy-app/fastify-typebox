@@ -4,9 +4,50 @@ Plugin for Fastify to prevent having to write duplicate type definitions for sch
 
 `@foodsy-app/fastify-typebox` uses [typebox](https://github.com/sinclairzx81/typebox), to compose JSON schemas.
 
-**Important!**
+**Important note before using this plugin!**
 
-This plugin uses [patch-package](https://www.npmjs.com/package/patch-package) to comment existing type declarations for request methods in `node_modules/fastify/types/instance.d.ts` since TypeScript does not allow to overwrite declarations. If you notice any problems, please post a issue.
+This plugin requires [patch-package](https://www.npmjs.com/package/patch-package) to comment existing type declarations for request methods in `node_modules/fastify/types/instance.d.ts` since TypeScript does not allow to overwrite declarations.
+
+Create a `fastify+3.1.1.patch` file (edit the version based on the Fastify version you have installed) and paste the block below inside:
+
+```diff
+diff --git a/node_modules/fastify/types/instance.d.ts b/node_modules/fastify/types/instance.d.ts
+index 06380bd..558338d 100644
+--- a/node_modules/fastify/types/instance.d.ts
++++ b/node_modules/fastify/types/instance.d.ts
+@@ -66,14 +66,14 @@ export interface FastifyInstance<
+     ContextConfig = ContextConfigDefault
+   >(opts: RouteOptions<RawServer, RawRequest, RawReply, RouteGeneric, ContextConfig>): FastifyInstance<RawServer, RawRequest, RawReply, Logger>;
+
+-  get: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  head: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  post: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  put: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  delete: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  options: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  patch: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+-  all: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // get: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // head: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // post: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // put: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // delete: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // options: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // patch: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // all: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
+
+   // addHook: overloads
+
+
+```
+
+After this, run the following command:
+
+```bash
+npx patch-package --patch-dir .
+```
+
+Run the same command using the `--reverse` flag if you notice any problems.
 
 ## Install
 

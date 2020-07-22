@@ -1,6 +1,6 @@
 {
   "name": "@foodsy-app/fastify-typebox",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Plugin for Fastify to prevent having to write duplicate type definitions for schemas",
   "keywords": [
     "fastify",
@@ -30,14 +30,11 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "clean": "rimraf index.js index.d.ts",
-    "postinstall": "patch-package",
     "prepublishOnly": "npm run clean && npm run build"
   },
   "dependencies": {
     "@sinclair/typebox": "^0.10.1",
     "fastify-plugin": "^2.0.1",
-    "patch-package": "^6.2.2",
-    "postinstall-postinstall": "^2.1.0",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
