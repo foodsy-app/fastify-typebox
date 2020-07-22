@@ -1,8 +1,8 @@
-# @foodsy/fastify-typebox
+# @foodsy-app/fastify-typebox
 
 Plugin for Fastify to prevent having to write duplicate type definitions for schemas.
 
-`@foodsy/fastify-typebox` uses [typebox](https://github.com/sinclairzx81/typebox), to compose JSON schemas.
+`@foodsy-app/fastify-typebox` uses [typebox](https://github.com/sinclairzx81/typebox), to compose JSON schemas.
 
 **Important!**
 
@@ -11,7 +11,9 @@ This plugin uses [patch-package](https://www.npmjs.com/package/patch-package) to
 ## Install
 
 ```bash
-npm i @foodsy/fastify-typebox @sinclair/typebox
+npm i @foodsy-app/fastify-typebox @sinclair/typebox
+# Or if you are using Yarn
+yarn add @foodsy-app/fastify-typebox @sinclair/typebox
 ```
 
 ## Usage
@@ -21,7 +23,7 @@ Add it to your project using `register` and you are done!
 ```typescript
 import fastify from "fastify";
 
-fastify.register(require("@foodsy/fastify-typebox"));
+fastify.register(require("@foodsy-app/fastify-typebox"));
 ```
 
 ## Examples
