@@ -21,6 +21,24 @@ interface TypeboxRouteShorthandMethod<RawServer extends RawServerBase = RawServe
         schema?: Partial<T>;
     }, handler: RouteHandlerMethod<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>): FastifyInstance<RawServer, RawRequest, RawReply>;
 }
+interface TypeboxRouteShorthandMethod<RawServer extends RawServerBase = RawServerDefault, RawRequest extends RawRequestDefaultExpression<RawServer> = RawRequestDefaultExpression<RawServer>, RawReply extends RawReplyDefaultExpression<RawServer> = RawReplyDefaultExpression<RawServer>> {
+    <T extends Schema, RequestGeneric extends {
+        Body?: Static<T["body"]>;
+        Querystring?: Static<T["querystring"]>;
+        Params?: Static<T["params"]>;
+        Headers?: Static<T["headers"]>;
+    }, ContextConfig = ContextConfigDefault>(path: string, handler: RouteHandlerMethod<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>): FastifyInstance<RawServer, RawRequest, RawReply>;
+}
+interface TypeboxRouteShorthandMethod<RawServer extends RawServerBase = RawServerDefault, RawRequest extends RawRequestDefaultExpression<RawServer> = RawRequestDefaultExpression<RawServer>, RawReply extends RawReplyDefaultExpression<RawServer> = RawReplyDefaultExpression<RawServer>> {
+    <T extends Schema, RequestGeneric extends {
+        Body?: Static<T["body"]>;
+        Querystring?: Static<T["querystring"]>;
+        Params?: Static<T["params"]>;
+        Headers?: Static<T["headers"]>;
+    }, ContextConfig = ContextConfigDefault>(path: string, opts: Omit<RouteShorthandOptions<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>, "schema"> & {
+        schema?: Partial<T>;
+    }): FastifyInstance<RawServer, RawRequest, RawReply>;
+}
 declare module "fastify" {
     interface FastifyInstance<RawServer extends RawServerBase = RawServerDefault, RawRequest extends RawRequestDefaultExpression<RawServer> = RawRequestDefaultExpression<RawServer>, RawReply extends RawReplyDefaultExpression<RawServer> = RawReplyDefaultExpression<RawServer>, Logger = FastifyLoggerInstance> {
         typeboxSchema: typeof createTypeboxSchema;
