@@ -53,5 +53,6 @@ declare module "fastify" {
     }
 }
 declare const createTypeboxSchema: <T extends Schema>(typeboxSchema: T) => T;
-declare const _default: import("fastify").FastifyPluginCallback<{}, import("http").Server>;
+declare const _default: import("fastify").FastifyPluginCallback<Record<never, never>, import("http").Server>;
 export default _default;
+export { createTypeboxSchema };
