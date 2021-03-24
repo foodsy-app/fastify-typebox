@@ -42,8 +42,8 @@ interface TypeboxRouteShorthandMethod<
     ContextConfig = ContextConfigDefault
   >(
     path: string,
-    opts: Omit<RouteShorthandOptions<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>, "schema"> & {
-      schema?: Partial<T>;
+    opts: RouteShorthandOptions<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig> & {
+      schema?: T;
     },
     handler: RouteHandlerMethod<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>
   ): FastifyInstance<RawServer, RawRequest, RawReply>;
@@ -84,8 +84,8 @@ interface TypeboxRouteShorthandMethod<
     ContextConfig = ContextConfigDefault
   >(
     path: string,
-    opts: Omit<RouteShorthandOptionsWithHandler<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>, "schema"> & {
-      schema?: Partial<T>;
+    opts: RouteShorthandOptionsWithHandler<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig> & {
+      schema?: T;
     }
   ): FastifyInstance<RawServer, RawRequest, RawReply>;
 }
