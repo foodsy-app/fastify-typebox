@@ -33,10 +33,10 @@ interface TypeboxRouteShorthandMethod<
   <
     T extends Schema,
     RequestGeneric extends {
-      Body?: Static<T["body"]>;
-      Querystring?: Static<T["querystring"]>;
-      Params?: Static<T["params"]>;
-      Headers?: Static<T["headers"]>;
+      Body: Static<T["body"]>;
+      Querystring: Static<T["querystring"]>;
+      Params: Static<T["params"]>;
+      Headers: Static<T["headers"]>;
     },
     ContextConfig = ContextConfigDefault
   >(
@@ -76,10 +76,10 @@ interface TypeboxRouteShorthandMethod<
   <
     T extends Schema,
     RequestGeneric extends {
-      Body?: Static<T["body"]>;
-      Querystring?: Static<T["querystring"]>;
-      Params?: Static<T["params"]>;
-      Headers?: Static<T["headers"]>;
+      Body: Static<T["body"]>;
+      Querystring: Static<T["querystring"]>;
+      Params: Static<T["params"]>;
+      Headers: Static<T["headers"]>;
     },
     ContextConfig = ContextConfigDefault
   >(
