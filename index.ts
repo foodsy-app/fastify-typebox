@@ -54,12 +54,11 @@ interface TypeboxRouteShorthandMethod<
   RawReply extends RawReplyDefaultExpression<RawServer> = RawReplyDefaultExpression<RawServer>
 > {
   <
-    T extends Schema,
     RequestGeneric extends {
-      Body?: Static<T["body"]>;
-      Querystring?: Static<T["querystring"]>;
-      Params?: Static<T["params"]>;
-      Headers?: Static<T["headers"]>;
+      Body: never;
+      Querystring: never;
+      Params: never;
+      Headers: never;
     },
     ContextConfig = ContextConfigDefault
   >(
