@@ -11,6 +11,7 @@ import {
   RawServerDefault,
   RouteHandlerMethod,
   RouteShorthandOptions,
+  RouteShorthandOptionsWithHandler
 } from "fastify";
 import fp from "fastify-plugin";
 
@@ -83,7 +84,7 @@ interface TypeboxRouteShorthandMethod<
     ContextConfig = ContextConfigDefault
   >(
     path: string,
-    opts: Omit<RouteShorthandOptions<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>, "schema"> & {
+    opts: Omit<RouteShorthandOptionsWithHandler<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>, "schema"> & {
       schema?: Partial<T>;
     }
   ): FastifyInstance<RawServer, RawRequest, RawReply>;
