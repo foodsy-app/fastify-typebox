@@ -119,3 +119,4 @@ const plugin: FastifyPlugin = (fastify, _options, done) => {
 };
 
 export default fp(plugin, { fastify: ">=3.x", name: "@foodsy-app/fastify-typebox" });
+export { createTypeboxSchema };
