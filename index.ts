@@ -20,17 +20,17 @@ interface Schema extends FastifySchema {
   querystring?: TSchema;
   params?: TSchema;
   headers?: TSchema;
-  response?: {
-    [code: string]: TSchema;
-    [code: number]: TSchema;
-  };
+  response?: Record<number, TSchema>;
 }
+
+type StaticResponse<T> = T extends Record<string | number, infer U> ? Static<U> : never;
 
 export interface InferredRouteInterface<T extends Schema> {
   Body: Static<T["body"]>;
   Querystring: Static<T["querystring"]>;
   Params: Static<T["params"]>;
   Headers: Static<T["headers"]>;
+  Reply: StaticResponse<T["response"]>;
 }
 
 interface TypeboxRouteShorthandMethod<
