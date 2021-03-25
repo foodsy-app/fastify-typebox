@@ -107,11 +107,11 @@ server.get(
     }),
   },
   (request, reply) => {
-    // `id` is inferred as string | undefined
-    const id = request.params?.id;
+    // `id` is inferred as string
+    const id = request.params.id;
 
     // `user` is inferred as the object we described!
-    const user = request.body?.user;
+    const user = request.body.user;
   }
 );
 ```
