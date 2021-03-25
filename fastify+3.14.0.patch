@@ -1,11 +1,17 @@
 diff --git a/node_modules/fastify/types/instance.d.ts b/node_modules/fastify/types/instance.d.ts
-index 67d6930..0cacd78 100644
+index 67d6930..60b7916 100644
 --- a/node_modules/fastify/types/instance.d.ts
 +++ b/node_modules/fastify/types/instance.d.ts
-@@ -68,14 +68,14 @@ export interface FastifyInstance<
-     SchemaCompiler = FastifySchema,
-   >(opts: RouteOptions<RawServer, RawRequest, RawReply, RouteGeneric, ContextConfig, SchemaCompiler>): FastifyInstance<RawServer, RawRequest, RawReply, Logger>;
+@@ -62,20 +62,20 @@ export interface FastifyInstance<
+   getDefaultRoute: DefaultRoute<RawRequest, RawReply>;
+   setDefaultRoute(defaultRoute: DefaultRoute<RawRequest, RawReply>): void;
  
+-  route<
+-    RouteGeneric extends RouteGenericInterface = RouteGenericInterface,
+-    ContextConfig = ContextConfigDefault,
+-    SchemaCompiler = FastifySchema,
+-  >(opts: RouteOptions<RawServer, RawRequest, RawReply, RouteGeneric, ContextConfig, SchemaCompiler>): FastifyInstance<RawServer, RawRequest, RawReply, Logger>;
+-
 -  get: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
 -  head: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
 -  post: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
@@ -14,6 +20,12 @@ index 67d6930..0cacd78 100644
 -  options: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
 -  patch: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
 -  all: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
++  // route<
++  //   RouteGeneric extends RouteGenericInterface = RouteGenericInterface,
++  //   ContextConfig = ContextConfigDefault,
++  //   SchemaCompiler = FastifySchema,
++  // >(opts: RouteOptions<RawServer, RawRequest, RawReply, RouteGeneric, ContextConfig, SchemaCompiler>): FastifyInstance<RawServer, RawRequest, RawReply, Logger>;
++
 +  // get: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
 +  // head: RouteShorthandMethod<RawServer, RawRequest, RawReply>;
 +  // post: RouteShorthandMethod<RawServer, RawRequest, RawReply>;

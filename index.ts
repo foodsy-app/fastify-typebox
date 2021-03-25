@@ -10,6 +10,7 @@ import {
   RawServerBase,
   RawServerDefault,
   RouteHandlerMethod,
+  RouteOptions,
   RouteShorthandOptions,
   RouteShorthandOptionsWithHandler
 } from "fastify";
@@ -90,6 +91,16 @@ declare module "fastify" {
     Logger = FastifyLoggerInstance
   > {
     typeboxSchema: typeof createTypeboxSchema;
+
+    route<
+      T extends Schema,
+      RouteGeneric extends InferredRouteInterface<T>,
+      ContextConfig = ContextConfigDefault
+    >(
+      opts: RouteOptions<RawServer, RawRequest, RawReply, RouteGeneric, ContextConfig> & {
+        schema?: T;
+      }
+    ): FastifyInstance<RawServer, RawRequest, RawReply, Logger>;
 
     get: TypeboxRouteShorthandMethod<RawServer, RawRequest, RawReply>;
     head: TypeboxRouteShorthandMethod<RawServer, RawRequest, RawReply>;
