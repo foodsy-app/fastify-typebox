@@ -26,6 +26,13 @@ interface Schema extends FastifySchema {
   };
 }
 
+export interface InferredRouteInterface<T extends Schema> {
+  Body: Static<T["body"]>;
+  Querystring: Static<T["querystring"]>;
+  Params: Static<T["params"]>;
+  Headers: Static<T["headers"]>;
+}
+
 interface TypeboxRouteShorthandMethod<
   RawServer extends RawServerBase = RawServerDefault,
   RawRequest extends RawRequestDefaultExpression<RawServer> = RawRequestDefaultExpression<RawServer>,
@@ -33,12 +40,7 @@ interface TypeboxRouteShorthandMethod<
 > {
   <
     T extends Schema,
-    RequestGeneric extends {
-      Body: Static<T["body"]>;
-      Querystring: Static<T["querystring"]>;
-      Params: Static<T["params"]>;
-      Headers: Static<T["headers"]>;
-    },
+    RequestGeneric extends InferredRouteInterface<T>,
     ContextConfig = ContextConfigDefault
   >(
     path: string,
@@ -55,12 +57,7 @@ interface TypeboxRouteShorthandMethod<
   RawReply extends RawReplyDefaultExpression<RawServer> = RawReplyDefaultExpression<RawServer>
 > {
   <
-    RequestGeneric extends {
-      Body: never;
-      Querystring: never;
-      Params: never;
-      Headers: never;
-    },
+    RequestGeneric extends InferredRouteInterface<never>,
     ContextConfig = ContextConfigDefault
   >(
     path: string,
@@ -75,12 +72,7 @@ interface TypeboxRouteShorthandMethod<
 > {
   <
     T extends Schema,
-    RequestGeneric extends {
-      Body: Static<T["body"]>;
-      Querystring: Static<T["querystring"]>;
-      Params: Static<T["params"]>;
-      Headers: Static<T["headers"]>;
-    },
+    RequestGeneric extends InferredRouteInterface<T>,
     ContextConfig = ContextConfigDefault
   >(
     path: string,
