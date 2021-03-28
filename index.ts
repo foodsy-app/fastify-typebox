@@ -10,7 +10,9 @@ import {
   RawServerBase,
   RawServerDefault,
   RouteHandlerMethod,
+  RouteOptions,
   RouteShorthandOptions,
+  RouteShorthandOptionsWithHandler
 } from "fastify";
 import fp from "fastify-plugin";
 
@@ -19,10 +21,17 @@ interface Schema extends FastifySchema {
   querystring?: TSchema;
   params?: TSchema;
   headers?: TSchema;
-  response?: {
-    [code: string]: TSchema;
-    [code: number]: TSchema;
-  };
+  response?: Record<number, TSchema>;
+}
+
+type StaticResponse<T> = T extends Record<string | number, infer U> ? Static<U> : never;
+
+export interface InferredRouteInterface<T extends Schema> {
+  Body: Static<T["body"]>;
+  Querystring: Static<T["querystring"]>;
+  Params: Static<T["params"]>;
+  Headers: Static<T["headers"]>;
+  Reply: StaticResponse<T["response"]>;
 }
 
 interface TypeboxRouteShorthandMethod<
@@ -32,17 +41,12 @@ interface TypeboxRouteShorthandMethod<
 > {
   <
     T extends Schema,
-    RequestGeneric extends {
-      Body?: Static<T["body"]>;
-      Querystring?: Static<T["querystring"]>;
-      Params?: Static<T["params"]>;
-      Headers?: Static<T["headers"]>;
-    },
+    RequestGeneric extends InferredRouteInterface<T>,
     ContextConfig = ContextConfigDefault
   >(
     path: string,
-    opts: Omit<RouteShorthandOptions<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>, "schema"> & {
-      schema?: Partial<T>;
+    opts: RouteShorthandOptions<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig> & {
+      schema?: T;
     },
     handler: RouteHandlerMethod<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>
   ): FastifyInstance<RawServer, RawRequest, RawReply>;
@@ -54,13 +58,7 @@ interface TypeboxRouteShorthandMethod<
   RawReply extends RawReplyDefaultExpression<RawServer> = RawReplyDefaultExpression<RawServer>
 > {
   <
-    T extends Schema,
-    RequestGeneric extends {
-      Body?: Static<T["body"]>;
-      Querystring?: Static<T["querystring"]>;
-      Params?: Static<T["params"]>;
-      Headers?: Static<T["headers"]>;
-    },
+    RequestGeneric extends InferredRouteInterface<never>,
     ContextConfig = ContextConfigDefault
   >(
     path: string,
@@ -75,17 +73,12 @@ interface TypeboxRouteShorthandMethod<
 > {
   <
     T extends Schema,
-    RequestGeneric extends {
-      Body?: Static<T["body"]>;
-      Querystring?: Static<T["querystring"]>;
-      Params?: Static<T["params"]>;
-      Headers?: Static<T["headers"]>;
-    },
+    RequestGeneric extends InferredRouteInterface<T>,
     ContextConfig = ContextConfigDefault
   >(
     path: string,
-    opts: Omit<RouteShorthandOptions<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig>, "schema"> & {
-      schema?: Partial<T>;
+    opts: RouteShorthandOptionsWithHandler<RawServer, RawRequest, RawReply, RequestGeneric, ContextConfig> & {
+      schema?: T;
     }
   ): FastifyInstance<RawServer, RawRequest, RawReply>;
 }
@@ -98,6 +91,16 @@ declare module "fastify" {
     Logger = FastifyLoggerInstance
   > {
     typeboxSchema: typeof createTypeboxSchema;
+
+    route<
+      T extends Schema,
+      RouteGeneric extends InferredRouteInterface<T>,
+      ContextConfig = ContextConfigDefault
+    >(
+      opts: RouteOptions<RawServer, RawRequest, RawReply, RouteGeneric, ContextConfig> & {
+        schema?: T;
+      }
+    ): FastifyInstance<RawServer, RawRequest, RawReply, Logger>;
 
     get: TypeboxRouteShorthandMethod<RawServer, RawRequest, RawReply>;
     head: TypeboxRouteShorthandMethod<RawServer, RawRequest, RawReply>;

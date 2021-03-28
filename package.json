@@ -29,6 +29,7 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "test": "tsc -p test/tsconfig.json",
     "clean": "rimraf index.js index.d.ts",
     "prepublishOnly": "npm run clean && npm run build",
     "postinstall": "npx patch-package --patch-dir ."
